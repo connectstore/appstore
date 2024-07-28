@@ -223,14 +223,13 @@
 <button class="button bottom-button" id="continueButton">CONTINUAR</button>
 
 <script>
-	//Oculta o botão "Continuar" ao abrir a página.
-    document.getElementById('continueButton').classList.add('hidden'); // Oculta o botão "Continuar"
+    // Oculta o botão "Continuar" ao abrir a página.
+    document.getElementById('continueButton').classList.add('hidden');
     
     function selectCard(cardId) {
-    	document.getElementById('paymentPopup').classList.remove('active');
-    	// Mostra o botão "Continuar" ao selecionar a opção
+        document.getElementById('paymentPopup').classList.remove('active');
+        // Mostra o botão "Continuar" ao selecionar a opção
         document.getElementById('continueButton').classList.remove('hidden'); 
-    
         // Remove a classe 'selected' de todos os cards
         var cards = document.querySelectorAll('.card');
         cards.forEach(function(card) {
@@ -238,8 +237,9 @@
         });
 
         // Adiciona a classe 'selected' ao card clicado
-        var selectedCard = document.getElementById(cardId);
+        var selectedCard = document.querySelector('input#' + cardId);
         selectedCard.parentElement.classList.add('selected');
+        selectedCard.checked = true;
     }
 
     document.getElementById('continueButton').addEventListener('click', function() {
