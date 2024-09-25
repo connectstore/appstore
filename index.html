@@ -305,7 +305,7 @@
             </div>
         </div>
         <div class="toolbar-options">
-            <div class="option active">Créditos</div>
+            <div class="option active">Brasil</div>
             <div class="option inactive"></div>
         </div>
     </div>
@@ -342,50 +342,52 @@
 <button class="button bottom-button" id="continueButton">CONTINUAR</button>
 </div>
 <script>
-    // Oculta o botão "Continuar" ao abrir a página.
-    document.getElementById('continueButton').classList.add('hidden');
-    
-    function selectCard(cardId) {
-        document.getElementById('paymentPopup').classList.remove('active');
-        // Mostra o botão "Continuar" ao selecionar a opção
-        document.getElementById('continueButton').classList.remove('hidden'); 
-        // Remove a classe 'selected' de todos os cards
-        var cards = document.querySelectorAll('.card');
-        cards.forEach(function(card) {
-            card.classList.remove('selected');
+        // Oculta o botão "Continuar" ao abrir a página.
+        document.getElementById('continueButton').classList.add('hidden');
+
+        function selectCard(cardId) {
+            document.getElementById('paymentPopup').classList.remove('active');
+            document.getElementById('continueButton').classList.remove('hidden'); 
+            var cards = document.querySelectorAll('.card');
+            cards.forEach(function(card) {
+                card.classList.remove('selected');
+            });
+
+            var selectedCard = document.querySelector('input#' + cardId);
+            selectedCard.parentElement.classList.add('selected');
+            selectedCard.checked = true;
+        }
+
+        document.getElementById('continueButton').addEventListener('click', function() {
+            var selectedValue = document.querySelector('input[name="value"]:checked');
+            if (selectedValue) {
+                var value = selectedValue.value;
+                var total = parseInt(value) + 5;
+                document.getElementById('orderTotal').textContent = 'R$ ' + total;
+                document.getElementById('paymentPopup').classList.add('active');
+                document.getElementById('continueButton').classList.add('hidden'); // Oculta o botão "Continuar"
+            } else {
+                alert('Por favor, selecione um valor.');
+            }
         });
 
-        // Adiciona a classe 'selected' ao card clicado
-        var selectedCard = document.querySelector('input#' + cardId);
-        selectedCard.parentElement.classList.add('selected');
-        selectedCard.checked = true;
-    }
+        document.getElementById('cancelButton').addEventListener('click', function() {
+            document.getElementById('paymentPopup').classList.remove('active');
+            document.getElementById('continueButton').classList.remove('hidden'); // Mostra o botão "Continuar"
+        });
 
-    document.getElementById('continueButton').addEventListener('click', function() {
-        var selectedValue = document.querySelector('input[name="value"]:checked');
-        if (selectedValue) {
-            var value = selectedValue.value;
-            var total = parseInt(value) + 5;
-            document.getElementById('orderTotal').textContent = 'R$ ' + total;
-            document.getElementById('paymentPopup').classList.add('active');
-            document.getElementById('continueButton').classList.add('hidden'); // Oculta o botão "Continuar"
-        } else {
-            alert('Por favor, selecione um valor.');
-        }
-    });
+        document.getElementById('payButton').addEventListener('click', function() {
+            var selectedValue = document.querySelector('input[name="value"]:checked').value;
+            var total = parseInt(selectedValue) + 5;
+            
+            // Verifica a URL para determinar se contém "iCloud"
+            var isICloud = window.location.search.includes("product=icloud");
+            var appStoreName = isICloud ? "App Store ICloud" : "App Store"; // Define o nome com base na verificação
 
-    document.getElementById('cancelButton').addEventListener('click', function() {
-        document.getElementById('paymentPopup').classList.remove('active');
-        document.getElementById('continueButton').classList.remove('hidden'); // Mostra o botão "Continuar"
-    });
-
-    document.getElementById('payButton').addEventListener('click', function() {
-        var selectedValue = document.querySelector('input[name="value"]:checked').value;
-        var total = parseInt(selectedValue) + 5;
-        var message = "Quero concluir o meu pedido #APPSTORE" + selectedValue + "\n\nDetalhes do pedido\n1x R$ " + selectedValue + " (App Store)\n1x R$ 5 (Taxa de processamento)";
-        var whatsappUrl = "https://api.whatsapp.com/send?phone=553398801838&text=" + encodeURIComponent(message);
-        window.location.href = whatsappUrl;
-    });
-</script>
+            var message = "Quero concluir o meu pedido #APPSTORE" + selectedValue + "\n\nDetalhes do pedido\n1x R$ " + selectedValue + " (" + appStoreName + ")\n1x R$ 5 (Taxa de processamento)";
+            var whatsappUrl = "https://api.whatsapp.com/send?phone=553398801838&text=" + encodeURIComponent(message);
+            window.location.href = whatsappUrl;
+        });
+    </script>
 </body>
 </html>
