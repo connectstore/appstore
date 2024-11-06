@@ -348,7 +348,12 @@
 <script>
         // Oculta o botão "Continuar" ao abrir a página.
         document.getElementById('continueButton').classList.add('hidden');
-
+        
+        document.addEventListener("DOMContentLoaded", function() {
+        // Seleciona automaticamente o cartão ao carregar a página
+        selectCard('value20'); 
+    });
+        	
         function selectCard(cardId) {
             document.getElementById('paymentPopup').classList.remove('active');
             document.getElementById('continueButton').classList.remove('hidden'); 
