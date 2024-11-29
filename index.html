@@ -143,7 +143,15 @@
             color: #FFFFFF;
             padding: 5px 10px;
             border-radius: 20px;
-            margin-left: auto;
+            margin-left: 3px;
+        }
+        
+        .highlightblackfriday {
+            background: linear-gradient(90deg, #000000, #000000);
+            color: #FFFFFF;
+            padding: 5px 10px;
+            border-radius: 20px;
+            margin-left: 3px;
         }
 
         .title {
@@ -331,8 +339,16 @@
         <label for="value50" class="value">R$ 50</label>
     </div>
     <div class="card" onclick="selectCard('value80')">
-        <input type="radio" name="value" id="value80" value="80">
+        <input type="radio" name="value" id="value80" value="75">
         <label for="value80" class="value">R$ 80</label>
+        <span class="highlightblackfriday">Black Friday</span>
+        <span class="highlightblackfriday">Taxa zero</span>
+    </div>
+    <div class="card" onclick="selectCard('value100')">
+        <input type="radio" name="value" id="value100" value="95">
+        <label for="value100" class="value">R$ 100</label>
+        <span class="highlightblackfriday">Black Friday</span>
+        <span class="highlightblackfriday">Taxa zero</span>
     </div>
 
 <div class="popup" id="paymentPopup">
