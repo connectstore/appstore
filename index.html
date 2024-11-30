@@ -145,14 +145,6 @@
             border-radius: 20px;
             margin-left: 3px;
         }
-        
-        .highlightblackfriday {
-            background: linear-gradient(90deg, #000000, #000000);
-            color: #FFFFFF;
-            padding: 5px 10px;
-            border-radius: 20px;
-            margin-left: 3px;
-        }
 
         .title {
             font-size: 30px;
@@ -300,6 +292,54 @@
             margin-right: auto;
             margin-top: -12px;
         }
+        
+        .adcard {
+            background-color: white;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .adcard img {
+            width: 50px;
+            height: 50px;
+        }
+        .adcard-content {
+            max-width: 80%;
+        }
+        .adcard-title {
+            font-size: 18px;
+            font-weight: bold;
+            color: #333333;
+            margin-bottom: 5px;
+        }
+        .adcard-text {
+            font-size: 14px;
+            color: #666666;
+            margin-bottom: 5px;
+        }
+        .adcard-text strong {
+            color: #212121;
+        }
+        .adcard-text.green {
+        	font-size: 16px;
+            color: green;
+        }
+        .adhighlight-card {
+            background-color: #f5f5f5;
+            border-left: 5px solid #4CAF50;
+        }
+       
+       .highlightblackfriday {
+            background: linear-gradient(90deg, #4E75AF, #4E75AF);
+            color: #FFFFFF;
+            padding: 5px 10px;
+            border-radius: 20px;
+            margin-left: 3px;
+        }
+        
     </style>
 </head>
 <body>
@@ -323,6 +363,21 @@
     </div>
    
     <div class="container">
+    	
+    <div class="adcard adhighlight-card">
+    <div class="adcard-content">
+     <div class="adcard-title">
+      Tá on?
+     </div>
+     <div class="adcard-text">
+      O Connect sim! E hoje você tem TAXA ZERO em Gift Cards acima de R$ 80 🚀
+     </div>
+     <div class="adcard-text green">
+      A oferta TÁ ON para você! 
+     </div>
+    </div>
+   </div>
+  
         <div class="subtitle">Selecione o valor do cartão pré-pago</div>
 
     <div class="card" onclick="selectCard('value20')">
@@ -341,14 +396,10 @@
     <div class="card" onclick="selectCard('value80')">
         <input type="radio" name="value" id="value80" value="75">
         <label for="value80" class="value">R$ 80</label>
-        <span class="highlightblackfriday">Black Friday</span>
-        <span class="highlightblackfriday">Taxa zero</span>
     </div>
     <div class="card" onclick="selectCard('value100')">
         <input type="radio" name="value" id="value100" value="95">
         <label for="value100" class="value">R$ 100</label>
-        <span class="highlightblackfriday">Black Friday</span>
-        <span class="highlightblackfriday">Taxa zero</span>
     </div>
 
 <div class="popup" id="paymentPopup">
@@ -360,6 +411,7 @@
 </div>
 
 <button class="button bottom-button" id="continueButton">CONTINUAR</button>
+
 </div>
 <script>
         // Oculta o botão "Continuar" ao abrir a página.
